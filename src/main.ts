@@ -14,6 +14,7 @@ async function bootstrap() {
   }));
 
   const port = process.env.PORT || 6070;
+  const baseUrl = process.env.BASE_URL || `http://localhost:${port}`;
 
   // Swagger Configuration
   const config = new DocumentBuilder()
@@ -29,7 +30,7 @@ A comprehensive wallet service with Google OAuth, API key management, Paystack i
 **⚠️ Important:** OAuth endpoints cannot be tested in Swagger directly.
 
 1. **Open this URL in your browser:**  
-   👉 [http://localhost:${port}/auth/google](http://localhost:${port}/auth/google)
+   👉 [${baseUrl}/auth/google](${baseUrl}/auth/google)
 
 2. Sign in with your Google account
 
@@ -76,8 +77,8 @@ For service-to-service authentication:
       },
       'api-key',
     )
-    .addServer(`http://localhost:${port}`, 'Local Development')
-    .addServer('https://your-production-domain.com', 'Production')
+    // .addServer(`http://localhost:${port}`, 'Local Development')
+    .addServer(`${baseUrl}`, 'Production')
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -91,7 +92,7 @@ For service-to-service authentication:
   });
 
   await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}`);
-  console.log(`Swagger documentation is available at: http://localhost:${port}/api`);
+  console.log(`Application is running on: ${baseUrl}`);
+  console.log(`Swagger documentation is available at: ${baseUrl}/api`);
 }
 bootstrap();
