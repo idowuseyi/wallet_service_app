@@ -50,8 +50,7 @@ For service-to-service authentication:
 3. Authorize with the API key instead
 
 ## 📖 More Information
-- [GitHub Repository](#)
-- [Full Documentation](./SWAGGER.md)
+- [GitHub Repository]('https://github.com/idowuseyi/wallet_service_app.git')
     `)
     .setVersion('1.0')
     .addTag('Authentication', '🔐 Google OAuth and JWT authentication')
@@ -77,8 +76,7 @@ For service-to-service authentication:
       },
       'api-key',
     )
-    // .addServer(`http://localhost:${port}`, 'Local Development')
-    .addServer(`${baseUrl}`, 'Production')
+    .addServer(`${baseUrl}`)
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
